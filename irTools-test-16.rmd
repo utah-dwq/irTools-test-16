@@ -1,0 +1,40 @@
+# IR Tools test 2008-2014 data (2016 IR period of record)
+
+## DWQ packages
+#devtools::install_github('utah-dwq/wqTools')
+#devtools::install_github('ut-ir-tools/irTools')
+library(wqTools)
+library(irTools)
+
+## Data download
+#setwd('C:\\Users\\jvander\\Documents\\R\\irTools-test-16')
+downloadWQP(outfile_path='01-raw-data',start_date='10/01/2008', end_date='09/30/2014', zip=TRUE, unzip=TRUE, retrieve=c("narrowresult", "activity", "detquantlim"))
+downloadWQP(outfile_path='01-raw-data', zip=FALSE, retrieve="sites")
+#Note - having an issue downloading sites for POR date range (Unclear why exactly. Seems to be associated with older sites). Downloading all sites separately, then subsetting to just those included in narrowresult.
+
+sites=read.csv(file='01-raw-data/sites-2019-04-04.csv')
+nr=read.csv(file='01-raw-data/narrowresult-2019-04-04.csv')
+sites=sites[sites$MonitoringLocationIdentifier %in% nr$MonitoringLocationIdentifier,]
+write.csv(file='01-raw-data/sites-2019-04-04.csv', sites, row.names=F)
+rm(sites)
+
+## Read raw data into R, remove duplicates and check for orphans
+irdata <- readWQPFiles(file_select=FALSE,
+            narrowresult_file = "01-raw-data\\narrowresult-2019-04-04.csv",
+            sites_file = "01-raw-data\\sites-2019-04-04.csv",
+            activity_file = "01-raw-data\\activity-2019-04-04.csv",
+            detquantlim_file = "01-raw-data\\detquantlim-2019-04-04.csv",
+            orph_check = TRUE)
+objects(irdata)
+
+## Auto-validate sites
+autoValidateWQPsites(
+	sites_object=irdata$sites,
+	master_site_file="lookup-tables/IR_master_site_file.csv",
+	waterbody_type_file = "lookup-tables/waterbody_type_domain_table.csv",
+	polygon_path="02-site-validation/polygons",
+	outfile_path="02-site-validation"
+	)
+
+## Manual site validation
+
