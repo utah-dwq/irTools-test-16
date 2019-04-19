@@ -1,40 +1,152 @@
-# IR Tools test 2008-2014 data (2016 IR period of record)
 
-## DWQ packages
-#devtools::install_github('utah-dwq/wqTools')
-#devtools::install_github('ut-ir-tools/irTools')
+---
+title: "IR Tools test 2008-2014 data (2016 IR period of record)"
+author: Jake Vander Laan
+output: html_document
+---
+
+# Background
+## R packages
+## GitHub
+
+## DWQ's R packages
+```{r, packages, eval=F}
+devtools::install_github('utah-dwq/wqTools')
+devtools::install_github('ut-ir-tools/irTools')
+```
+
+```{r, libraries}
 library(wqTools)
 library(irTools)
+```
 
+# Download and import data
 ## Data download
+```{r, download1, eval=F}
 #setwd('C:\\Users\\jvander\\Documents\\R\\irTools-test-16')
 downloadWQP(outfile_path='01-raw-data',start_date='10/01/2008', end_date='09/30/2014', zip=TRUE, unzip=TRUE, retrieve=c("narrowresult", "activity", "detquantlim"))
 downloadWQP(outfile_path='01-raw-data', zip=FALSE, retrieve="sites")
-#Note - having an issue downloading sites for POR date range (Unclear why exactly. Seems to be associated with older sites). Downloading all sites separately, then subsetting to just those included in narrowresult.
+```
+*Note--* Having an issue downloading sites for POR date range (Unclear why exactly. Seems to be associated applying date query parameters to older sites). Downloading all sites separately, then subsetting to just those included in narrowresult.
 
+```{r, download2, eval=F}
 sites=read.csv(file='01-raw-data/sites-2019-04-04.csv')
 nr=read.csv(file='01-raw-data/narrowresult-2019-04-04.csv')
 sites=sites[sites$MonitoringLocationIdentifier %in% nr$MonitoringLocationIdentifier,]
 write.csv(file='01-raw-data/sites-2019-04-04.csv', sites, row.names=F)
 rm(sites)
+```
 
-## Read raw data into R, remove duplicates and check for orphans
+
+## Data imports
+Read raw data into R, remove duplicates and check for orphans
+```{r, data-import, cache=T}
 irdata <- readWQPFiles(file_select=FALSE,
             narrowresult_file = "01-raw-data\\narrowresult-2019-04-04.csv",
             sites_file = "01-raw-data\\sites-2019-04-04.csv",
             activity_file = "01-raw-data\\activity-2019-04-04.csv",
             detquantlim_file = "01-raw-data\\detquantlim-2019-04-04.csv",
             orph_check = TRUE)
-objects(irdata)
 
-## Auto-validate sites
+objects(irdata)
+```
+
+```{r, attach-data}
+attach(irdata)
+```
+
+
+# Site and data validation
+## Auto site validation
+```{r, site-auto-validate, eval=F}
 autoValidateWQPsites(
-	sites_object=irdata$sites,
-	master_site_file="lookup-tables/IR_master_site_file.csv",
+	sites_object=sites,
+	master_site_file="02-site-validation/IR_master_site_file.csv",
 	waterbody_type_file = "lookup-tables/waterbody_type_domain_table.csv",
 	polygon_path="02-site-validation/polygons",
 	outfile_path="02-site-validation"
 	)
+```
+
 
 ## Manual site validation
+Performed a test manual site validation by accepting, rejecting, and merging a number of sites through multiple iterations of the application. See '02-site-validation' folder. 
+Data from all sites still requiring review will be rejected at a later step. A 'ReviewComment' column was manually added to the master site list file. The site list and flat reasons files were 
+manually added to a single .xlsx workbook to interface with the site review application (tabnames 'sites' and 'reasons').
+
+[Site review application](https://udwq.shinyapps.io/site-review-demo/)
+
+```{r, site-man-validate, eval=F}
+runSiteValApp()
+```
+
+# Data translations & processing
+
+## Identify translation workbook
+```{r, id-transwb}
+translation_wb="C:\\Users\\jvander\\Documents\\R\\irTools-test-16\\lookup-tables\\ir_translation_workbook.xlsx"
+```
+
+## Update detection condition / limit name tables
+```{r, update-detcondlim}
+updateDetCondLimTables(results=merged_results, detquantlim=detquantlim, translation_wb=translation_wb,
+						detConditionTable_startRow=2, detLimitTypeTable_startRow=2)
+```
+
+
+## Fill masked/censored values in results
+```{r, fill-masked}
+merged_results_filled=fillMaskedValues(results=merged_results, detquantlim=detquantlim, translation_wb=translation_wb,
+									   detLimitTypeTable_sheetname="detLimitTypeTable", detLimitTypeTable_startRow=2,
+									   unitConvTable_sheetname="unitConvTable", unitConvTable_startRow=1, unitConvTable_startCol=1,
+									   lql_fac=0.5, uql_fac=1)
+```
+
+## Update lab/activity & media tables
+```{r, labactmedia}
+updateLabActMediaTables(merged_results_filled, translation_wb=translation_wb, labNameActivityTable_startRow = 2)
+```
+
+
+## Apply screening tables
+```{r, screening-tables, eval=F}
+mrf_screened=applyScreenTable(merged_results_filled,wb=translation_wb,
+								sheetname="sites",startRow=2, flag_col_name="IR_Site_FLAG", com_col_name="IR_Site_COMMENT")
+
+mrf_screened=applyScreenTable(mrf_screened,wb=translation_wb,
+								sheetname="detConditionTable",startRow=2, flag_col_name="IR_DetCond_FLAG", com_col_name="IR_DetCond_COMMENT")
+
+mrf_screened=applyScreenTable(mrf_screened,wb=translation_wb,
+								sheetname="labNameActivityTable",startRow=2,flag_col_name="IR_LabAct_FLAG", com_col_name="IR_LabAct_COMMENT")
+
+mrf_screened=applyScreenTable(mrf_screened,wb=translation_wb,
+								sheetname="activityMediaNameTable",startRow=1, flag_col_name="IR_Media_FLAG", com_col_name="IR_Media_COMMENT")
+
+```
+
+
+## Subset data to desired flag types
+```{r, screen-subset}
+mrf_sub=subset(mrf_screened,
+	IR_DetCond_FLAG=="ACCEPT" &
+	IR_LabAct_FLAG=="ACCEPT" &
+	IR_Media_FLAG=="ACCEPT" &
+	IR_Site_FLAG =="ACCEPT")
+	
+dim(mrf_sub)
+table(mrf_sub$IR_DetCond_FLAG)
+table(mrf_sub$IR_LabAct_FLAG)
+table(mrf_sub$IR_Media_FLAG)
+table(mrf_sub$IR_Site_FLAG)
+table(mrf_sub$CharacteristicName)[table(mrf_sub$CharacteristicName)>0]
+```
+
+
+
+
+
+
+
+
+
 
