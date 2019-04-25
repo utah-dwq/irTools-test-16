@@ -1,0 +1,28 @@
+
+# Site validation
+
+
+## Auto site validation
+```{r, site-auto-validate, eval=F}
+autoValidateWQPsites(
+	sites_object=irdata$sites,
+	master_site_file="02-site-validation/IR_master_site_file.csv",
+	waterbody_type_file = "lookup-tables/waterbody_type_domain_table.csv",
+	polygon_path="02-site-validation/polygons",
+	outfile_path="02-site-validation"
+	)
+```
+
+## Manual site validation
+Performed a test manual site validation by accepting, rejecting, and merging a number of sites through multiple iterations of the application. See '02-site-validation' folder. 
+Data from all sites still requiring review will be rejected at a later step. A 'ReviewComment' column was manually added to the master site list file. The site list and flat reasons files were 
+manually added to a single .xlsx workbook to interface with the site review application (tabnames 'sites' and 'reasons').
+
+[Site review application](https://udwq.shinyapps.io/site-review-demo/)
+
+```{r, site-man-validate, eval=F}
+runSiteValApp()
+```
+
+
+

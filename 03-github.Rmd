@@ -1,0 +1,19 @@
+# GitHub
+Collaborative code writing, versioning, & sharing platform.  
+Individuals, organizations, teams, and repositories.
+
+## DWQ GitHub organization
+[github.com/utah-dwq](https://github.com/utah-dwq)
+
+## DWQ R packages
+* [wqTools](https://github.com/utah-dwq/wqTools)  
+* [irTools](https://github.com/utah-dwq/irTools)  
+
+
+# IR process outline
+```{r, out.width='95%', fig.align="center", echo=F, fig.cap='General IR process outline.'}
+knitr::include_graphics('99-other-files/images/ir-process-outline.png')
+```
+
+
+

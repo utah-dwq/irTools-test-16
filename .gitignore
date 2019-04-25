@@ -14,3 +14,7 @@ lookup-tables/ir_translation_workbook_bk.xlsx
 02-site-validation/IR_master_site_file-autoreview.csv
 02-site-validation/rev_rej_reasons.csv
 02-site-validation/rev_rej_reasons.csv
+lookup-tables/~$ir_translation_workbook.xlsx
+_book
+_bookdown_files
+_main_cache

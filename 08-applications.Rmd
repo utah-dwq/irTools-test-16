@@ -1,0 +1,35 @@
+# (PART) Applications {-}
+
+
+# Assessment review applications
+
+## Assessment unit & site assessment review dashboard
+[udwq.shinyapps.io/au-site-asmnt-demo](https://udwq.shinyapps.io/au-site-asmnt-demo/)
+[![site-au-asmnt](99-other-files/images/site-au-asmnt.PNG)](https://udwq.shinyapps.io/au-site-asmnt-demo/)
+<br><br>
+
+## Toxic & conventionals assessment review dashboard
+[udwq.shinyapps.io/toxicsConventionalsDashboard](https://udwq.shinyapps.io/toxicsConventionalsDashboard/)  
+[![site-au-asmnt](99-other-files/images/tox-conv.PNG)](https://udwq.shinyapps.io/toxicsConventionalsDashboard/)
+<br><br>
+
+## Lake profile dashboard
+[udwq.shinyapps.io/lakeprofiledashboard](https://udwq.shinyapps.io/lakeprofiledashboard/)
+[![lake-profiles](99-other-files/images/lake-profiles.PNG)](https://udwq.shinyapps.io/lakeprofiledashboard/)
+<br><br>
+
+## High frequency DO dashboard
+[udwq.shinyapps.io/hfdoDashboard](https://udwq.shinyapps.io/hfdoDashboard/)
+[![hfdo](99-other-files/images/hfdo.PNG)](https://udwq.shinyapps.io/hfdoDashboard/)
+<br><br>
+
+## Utah Lake Data Explorer
+[udwq.shinyapps.io/UtahLakeDataExplorer](https://udwq.shinyapps.io/UtahLakeDataExplorer/)
+[![utah-lake](99-other-files/images/utah-lake.PNG)](https://udwq.shinyapps.io/UtahLakeDataExplorer/)
+<br><br>
+
+## Ecoli dashboard
+[udwq.shinyapps.io/ecoliDataExplorer](https://udwq.shinyapps.io/ecoliDataExplorer/)
+[![ecoli](99-other-files/images/ecoli.PNG)](https://udwq.shinyapps.io/ecoliDataExplorer/)
+<br><br>
+
