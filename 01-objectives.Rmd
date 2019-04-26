@@ -6,10 +6,10 @@
 <br>
 
 ## Objectives
-> 1. Flexible tool inputs  
-> 2. Re-usable, generalizable, standardized components  
-> 3. Transparent & documented process  
-> 4. Readily reviewable  
+> **1. Flexible tool inputs**  
+> **2. Re-usable, generalizable, standardized components**  
+> **3. Transparent & documented process**  
+> **4. Readily reviewable**  
 
 <br><br><br><br><br>
 

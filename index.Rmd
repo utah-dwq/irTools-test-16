@@ -8,7 +8,6 @@ output: bookdown::gitbook
 documentclass: book
 ---
 
-
 # Preface {-}
 This book provides a background and demonstration of the Utah DWQ IR Team's re-development and automation of water quality assessment tools.  
 This book consists of two components:  

@@ -3,14 +3,13 @@
 R is an open source statistical program and coding language.  
 [r-project.org](https://www.r-project.org/)  
 <br>
+Robust user community of coders & problem solvers.  
+Fully customizable.  
+<br>
 
 > Everything that exists is an object.  
 > Everything that happens is a function call.  
 > --- John Chambers  
-  
-<br>
-Robust user community of coders & problem solvers.  
-Fully customizable.  
 <br><br>
 
 ## Functions & packages

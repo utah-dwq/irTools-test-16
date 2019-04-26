@@ -11,7 +11,7 @@ Individuals, organizations, teams, and repositories.
 
 
 # IR process outline
-```{r, out.width='95%', fig.align="center", echo=F, fig.cap='General IR process outline.'}
+```{r, out.width='70%', fig.align="center", echo=F, fig.cap='General IR process outline.'}
 knitr::include_graphics('99-other-files/images/ir-process-outline.png')
 ```
 

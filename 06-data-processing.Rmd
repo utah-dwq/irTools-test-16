@@ -2,14 +2,16 @@
 # Data processing
 
 ## Data validation
-Table-based validation. Functions to update & apply data validation tables, generate data with consistent nomenclature.  
+Table-based validation.  
+Functions to update & apply data validation tables, generate data with consistent nomenclature.  
 1. Labs & activity types  
 2. Activity media  
 3. Parameter names & fractions  
 4. Detection conditions  
 5. Detection limit types  
 6. Unit conversion factors  
-<br><br><br>
+7. Apply screening tables and subset to accepted data  
+<br><br>
 
 ```{r, id-transwb, echo=FALSE}
 translation_wb="00-lookup-tables\\ir_translation_workbook.xlsx"
@@ -22,7 +24,7 @@ updateDetCondLimTables(results=irdata$merged_results, detquantlim=irdata$detquan
 ```
 
 
-### Fill masked/censored values in results
+### Determine detection conditions and fill NDs
 ```{r, fill-masked}
 merged_results_filled=fillMaskedValues(results=irdata$merged_results, detquantlim=irdata$detquantlim, translation_wb=translation_wb,
 									   detLimitTypeTable_sheetname="detLimitTypeTable", detLimitTypeTable_startRow=2,
@@ -60,24 +62,17 @@ mrf_sub=subset(mrf_screened,
 	IR_LabAct_FLAG=="ACCEPT" &
 	IR_Media_FLAG=="ACCEPT" &
 	IR_Site_FLAG =="ACCEPT")
-	
-dim(mrf_sub)
-table(mrf_sub$IR_DetCond_FLAG)
-table(mrf_sub$IR_LabAct_FLAG)
-table(mrf_sub$IR_Media_FLAG)
-table(mrf_sub$IR_Site_FLAG)
-#table(mrf_sub$CharacteristicName)[table(mrf_sub$CharacteristicName)>0]
 ```
 
 ## Data prep
 Generating assessable dataset  
-1. Apply screening tables and subset to acceptable data  
-2. Assigning criteria (by parameter & use via criteria table)  
-3. Convert to consistent units (target units defined by criteria)  
-4. Check that data fractions & activities match assessment targets  
-5. Aggregate to daily values  
-6. Generate correction factors & calculate criteria  
-7. Split data into assessment groups  
+
+1. Assigning criteria (by parameter & use via criteria table)  
+2. Convert to consistent units (target units defined by criteria)  
+3. Check that data fractions & activities match assessment targets  
+4. Aggregate to daily values  
+5. Generate correction factors & calculate criteria  
+6. Split data into assessment groups  
 <br><br>
 
 
@@ -94,30 +89,75 @@ mrf_sub_translated=applyScreenTable(mrf_sub,wb=translation_wb,
 ```
 ### Subset data to ACCEPT parameters
 ```{r, sub-accept-params}
-accepted_data=subset(mrf_sub_translated, IR_Parameter_FLAG=="ACCEPT")
-knitr::kable(table(droplevels(accepted_data$CharacteristicName)))
+accept_data=subset(mrf_sub_translated, IR_Parameter_FLAG=="ACCEPT")
 ```
+
+```{r, echo=F}
+tab=data.frame(table(droplevels(accept_data$CharacteristicName)))
+names(tab)=c('Parameter', 'Count')
+```
+```{r, echo=F}
+knitr::kable(tab, caption='Accepted parameter sample counts.')
+```
+
 
 ### Criteria & unit assigments
 
 #### Assign criteria
 ```{r, assign-criteria}
-data_crit=assignCriteria(accepted_data, crit_wb="00-lookup-tables\\IR_uses_standards.xlsx",
+data_crit=assignCriteria(accept_data, crit_wb="00-lookup-tables\\IR_uses_standards.xlsx",
 								  crit_sheetname="criteria", ss_sheetname="ss_criteria", crit_startRow=1, ss_startRow=1, rm_nocrit=FALSE, print=FALSE)
-#knitr::kable(table(droplevels(data_crit$CharacteristicName),data_crit$R3172ParameterName))
-#DT::datatable(unique(data.frame(data_crit[,c('CharacteristicName','R3172ParameterName','BeneficialUse','NumericCriterion','CriterionUnits')])))
 ```
+<br><br>
+
+```{r, echo=F}
+tab=unique(data.frame(data_crit[,c('IR_MLID', 'IR_MLNAME','ASSESS_ID','Water_Type','ActivityStartDate','R3172ParameterName','IR_Value','IR_Unit','IR_DetCond','BeneficialUse','CriterionLabel', 'NumericCriterion','CriterionUnits', 'AsmntAggFun', 'SSC_StartMon','SSC_EndMon','SSC_MLID')]))
+sites_all=unique(data_crit$IR_MLID)
+sites_sel=sample(sites_all,10)
+sites_sel=unique(append(sites_sel,'UTAHDWQ_WQX-4960740'))
+tab=subset(tab, IR_MLID %in% sites_sel)
+tab=subset(tab, !is.na(NumericCriterion))
+tab=data.frame(lapply(tab, as.factor))
+```
+
+<br>
+```{r, echo=F, fig.cap='Example data with criteria assigned. Note the site specific standard assignment example of Blue Creek (MLID UTAHDWQ_WQX-4960740).'}
+DT::datatable(tab, rownames=FALSE, filter="top",
+				options = list(scrollY = '600px', scrollX=TRUE, paging = TRUE, dom="tpr", deferRender = TRUE)
+			)
+```
+
+<br><br>
+
+
+
 
 #### Update unit conversion table
 ```{r, update-unit-conv}
 updateUnitConvTable(data_crit, translation_wb, sheetname = "unitConvTable")
 ```
+<br><br>
 
 ### Final data prep step
 ```{r, data-prep}
 prepped_data=dataPrep(data=data_crit, translation_wb=translation_wb, split_agg_tds=TRUE, crit_wb="00-lookup-tables\\IR_uses_standards.xlsx",
 						unit_sheetname = "unitConvTable", startRow_unit = 1, cf_formulas_sheetname="cf_formulas", startRow_formulas=1)
 attach(prepped_data)
+```
+
+```{r, echo=F}
+tab=unique(data.frame(toxics[,c('IR_MLID', 'IR_MLNAME','ASSESS_ID','ActivityStartDate','R3172ParameterName','IR_Value','IR_Unit','BeneficialUse','CriterionLabel', 'NumericCriterion','CriterionUnits', 
+	'CalculatedCrit','hardness','cf_max_pH_pH units','cf_max_Temperature, water_deg C','cf_min_Calcium_mg/l','cf_min_Magnesium_mg/l','cf_min_pH_pH units','CF', 'CriterionFormula')]))
+tab=subset(tab, IR_MLID %in% sites_sel)
+tab=subset(tab, !is.na(NumericCriterion))
+tab=data.frame(lapply(tab, as.factor))
+```
+
+<br>
+```{r, echo=F, fig.cap='Example final prepped data (toxics). Note that units have been converted match criteria, hardness has been calculated, and correction factors have been applied to calculate formula-based criteria.'}
+DT::datatable(tab, rownames=FALSE, filter="top",
+				options = list(scrollY = '600px', scrollX=TRUE, paging = TRUE, dom="tpr", deferRender = TRUE)
+			)
 ```
 
 
