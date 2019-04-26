@@ -121,14 +121,26 @@ au_assessments=rollUp(data=assessments, group_vars=c("ASSESS_ID","AU_NAME"), exp
 
 ```{r, echo=F, fig.cap='AU-use-parameter level assessment rollup.'}
 #knitr::kable(head(au_use_param_assessments), )
-DT::datatable(au_use_param_assessments)
+DT::datatable(au_use_param_assessments, rownames=FALSE, filter="top",
+				options = list(scrollY = '600px', scrollX=TRUE, paging = TRUE, dom="tpr", deferRender = TRUE)
+			)
+```
+<br><br>
+```{r, out.width='95%', fig.align="center", echo=F, fig.cap='Silver Creek assessment table from 2016 IR. Note matching impairments for arsenic, cadmium, & total dissolved solids in AU level rollup example data.'}
+knitr::include_graphics('99-other-files/images/Silver-Creek-2016-IR.PNG')
 ```
 <br><br>
 
 ```{r, echo=F, fig.cap='AU level assessment rollup example.'}
 #knitr::kable(head(au_assessments))
-DT::datatable(au_assessments)
+DT::datatable(au_assessments, rownames=FALSE, filter="top",
+				options = list(scrollY = '600px', scrollX=TRUE, paging = TRUE, dom="tpr", deferRender = TRUE)
+			)
 ```
+
+
+
+
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
 
