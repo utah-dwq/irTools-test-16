@@ -89,9 +89,10 @@ toxics_exc=countExceedances(toxics)
 toxics_assessed=assessExcCounts(toxics_exc, min_n=4, max_exc_count=1, max_exc_count_id=0)
 ```
 
-## Lake profiles (not run)
-```{r, assess-lake-profs, eval=F}
+## Lake profiles
+```{r, assess-lake-profs}
 assessed_profs=assessLakeProfiles(lake_profiles)
+profs_assessed=assessed_profs$profile_asmnts_mlid_param
 ```
 
 ## E.coli (not run)
@@ -104,20 +105,18 @@ assess_ecoli = assessEColi(prepped_data$ecoli)
 assess_hfdo = assessHFDO(hfdo_data, min_n = 10)
 ```
 
-## Write out assessments
-```{r, write-asmnts}
-assessments=list(toxics_assessed=toxics_assessed, conv_assessed=conv_assessed)
-save(assessments, file='04-assessments/assessments-2016.Rdata')
+## Group assessments
+```{r, group-asmnts}
+assessments=list(toxics_assessed=toxics_assessed, conv_assessed=conv_assessed, profs_assessed=profs_assessed)
 ```
 
 # Rollup
 ```{r, roll-up}
+site_use_param_assessments=rollUp(data=assessments, group_vars=c("IR_MLID","IR_MLNAME","IR_Lat","IR_Long","ASSESS_ID","AU_NAME", "BeneficialUse","R3172ParameterName"), expand_uses=TRUE)
 au_use_param_assessments=rollUp(data=assessments, group_vars=c("ASSESS_ID","AU_NAME", "BeneficialUse","R3172ParameterName"), expand_uses=TRUE)
 au_use_assessments=rollUp(data=assessments, group_vars=c("ASSESS_ID","AU_NAME", "BeneficialUse"), expand_uses=TRUE)
 au_assessments=rollUp(data=assessments, group_vars=c("ASSESS_ID","AU_NAME"), expand_uses=TRUE)
 ```
-
-<br><br>
 
 ```{r, echo=F, fig.cap='AU-use-parameter level assessment rollup.'}
 #knitr::kable(head(au_use_param_assessments), )
@@ -138,8 +137,17 @@ DT::datatable(au_assessments, rownames=FALSE, filter="top",
 			)
 ```
 
+<br><br>
 
+# Write out assessments
+```{r, write-asmnts}
+save(assessments, file='04-assessments/assessments-2016.Rdata')
+write.csv(file='04-assessments/site-use-param-asmnt.csv', site_use_param_assessments)
+```
 
+# Assessment map
+[https://bookdown.org/jakevl/assessment-map/assessment-map.html](https://bookdown.org/jakevl/assessment-map/assessment-map.html)
+[![assessment-map](99-other-files/images/assessment-map.PNG)](https://bookdown.org/jakevl/assessment-map/assessment-map.html)
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
