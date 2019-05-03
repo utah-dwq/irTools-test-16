@@ -11,9 +11,22 @@ Individuals, organizations, teams, and repositories.
 
 
 # IR process outline
+> 1. Aggregate readily available data
+> 2. Harmonize datasets (names, units, etc.)
+> 3. Screen sites
+> 4. Validate data
+> 5. Merge sites, results, quantitation limits
+> 6. Assign and assess all applicable criteria
+> 7. Secondary reviews, comments, and final assessments
+
+<br><br>
+
 ```{r, out.width='70%', fig.align="center", echo=F, fig.cap='General IR process outline.'}
 knitr::include_graphics('99-other-files/images/ir-process-outline.png')
 ```
-
+<br><br>
+```{r, out.width='70%', fig.align="center", echo=F, fig.cap='Detailed IR team process outline.'}
+knitr::include_graphics('99-other-files/images/ir-process-outline-detail.png')
+```
 
 
