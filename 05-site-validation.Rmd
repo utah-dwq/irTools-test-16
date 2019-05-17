@@ -18,10 +18,12 @@ Performed a test manual site validation by accepting, rejecting, and merging a n
 Data from all sites still requiring review will be rejected at a later step. A 'ReviewComment' column was manually added to the master site list file. The site list and flat reasons files were 
 manually added to a single .xlsx workbook to interface with the site review application (tabnames 'sites' and 'reasons').
 
+To run remotely:
 [Site review application](https://udwq.shinyapps.io/site-review-demo/)
 
-```{r, site-man-validate, eval=F}
-runSiteValApp()
+To run locally:
+```{r, eval=F}
+irTools::runSiteValApp()
 ```
 
 

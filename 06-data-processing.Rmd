@@ -145,6 +145,18 @@ prepped_data=dataPrep(data=data_crit, translation_wb=translation_wb, split_agg_t
 attach(prepped_data)
 ```
 
+
+### Write processed data
+```{r, write-proc-data}
+data_list=prepped_data[c('agg_tds','conventionals','ecoli','lake_profiles','lakes_tds','lakes_trophic','toxics')]
+merged_data=plyr::rbind.fill(data_list)
+criteria=unique(merged_data[,c('ActivityStartDate','IR_MLID','IR_MLNAME','BeneficialUse','R3172ParameterName','CriterionUnits','TargetFraction','CriterionLabel','CriterionType','AsmntAggFun','NumericCriterion')])
+merged_data=unique(merged_data[,c('ActivityStartDate','IR_MLID','IR_MLNAME','ASSESS_ID','AU_NAME','AU_Type','BEN_CLASS','R3172ParameterName','IR_Value','IR_Unit','IR_DetCond','IR_Fraction','IR_ActivityType','IR_Lat','IR_Long','DataLoggerLine','ActivityRelativeDepthName',
+							'ActivityDepthHeightMeasure.MeasureValue','R317Descrp','ActivityDepthHeightMeasure.MeasureUnitCode','cf_max_pH_pH units','cf_max_Temperature, water_deg C','cf_min_Calcium_mg/l','cf_min_Magnesium_mg/l','cf_min_pH_pH units',
+							'hardness')])
+save(merged_data, criteria, file='03-processed-data/prepped_merged_data.Rdata')
+```
+
 ```{r, echo=F}
 tab=unique(data.frame(toxics[,c('IR_MLID', 'IR_MLNAME','ASSESS_ID','ActivityStartDate','R3172ParameterName','IR_Value','IR_Unit','BeneficialUse','CriterionLabel', 'NumericCriterion','CriterionUnits', 
 	'CalculatedCrit','hardness','cf_max_pH_pH units','cf_max_Temperature, water_deg C','cf_min_Calcium_mg/l','cf_min_Magnesium_mg/l','cf_min_pH_pH units','CF', 'CriterionFormula')]))

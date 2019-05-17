@@ -3,9 +3,11 @@ Collaborative code writing, versioning, & sharing platform.
 Individuals, organizations, teams, and repositories.
 
 ## DWQ GitHub organization
+A location for DWQ staff to store, collaborate, and share repositories.
 [github.com/utah-dwq](https://github.com/utah-dwq)
 
 ## DWQ R packages
+DWQ has two packages in current development. These can be viewed and installed via GitHub.  
 * [wqTools](https://github.com/utah-dwq/wqTools)  
 * [irTools](https://github.com/utah-dwq/irTools)  
 

@@ -13,19 +13,19 @@ Fully customizable.
 <br><br>
 
 ## Functions & packages
-### Function: 
+### Function
 A block of code that performs a particular task or set of tasks. A function has a name, **arguments**, a body (code), and a return value.
 <br>
 
-### Arguments:
+### Arguments
 Change-able inputs to a function.
 <br>
 
-### Package:
+### Package
 A portable collection of R functions.
 <br>
 
-### Function & package documentation:
+## Documentation
 * Help files: `?downloadWQP`
 ```{r, out.width='90%', fig.align="center", fig.cap='R function help file example.', echo=F}
 knitr::include_graphics('99-other-files/images/downloadWQP-help.PNG')
