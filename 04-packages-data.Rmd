@@ -1,5 +1,35 @@
 # (PART) Demonstration {-}
 
+# Options for running demos
+Demo materials can be accessed and run locally in three ways:
+
+## Preferred method: R-Studio Cloud
+A cloud workspace and R-project with DWQ's R packages and dependencies pre-installed can be accessed through R-Studio Cloud.  
+First, [sign up for an R-Studio account](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1) if you don't already have one. 
+Accounts are free, and logins via existing Google or GitHub accounts are OK.  
+Then, access the project for this demonstration at [rstudio.cloud/project/360104](https://rstudio.cloud/project/360104). This link will generate a temorary copy of the demonstration 
+project on your account. There you are able to import DWQ R package libraries and run functions and applications.  
+For example, 
+```{r, eval=F}
+library(irTools)
+asmntDashboard()
+```
+
+## Local install of R & DWQ packages
+Install R [r-project.org](https://www.r-project.org/) and/or R-Studio [rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/) if not already installed on your computer.    
+Installing DWQ's R packages from GitHub to your local R installation requires the package, 'devtools'.  
+To install devtools & DWQ's R packages:
+```{r, eval=F}
+install.packages('devtools')
+devtools::install_github('utah-dwq/irTools')
+library(irTools)
+asmntDashboard()
+```
+
+## Running Shiny applications via remote server
+Applications included in this demo have also been deployed to a remote server where they can be accessed via a web browser without installing R, packages, or creating a login. See the 'Applications' section of this document for more information. 
+Note that applications running on the remote server may run a bit slower and time-out after 15 minutes of inactivity.
+
 # Packages & data downloads
 ## Install & import DWQ's R packages
 ```{r, packages, eval=F}

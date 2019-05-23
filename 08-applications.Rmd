@@ -5,23 +5,43 @@
 
 ## Assessment review tools
 
+### Pre-assessment site validation applications
+
+To run locallyor in R-Studio Cloud:
+```{r, eval=F}
+irTools::runSiteValApp()
+```
+
+To run remotely:
+[Site review application](https://udwq.shinyapps.io/site-review-demo/)
+[![site-val-app](99-other-files/images/site-val-app.PNG)](https://udwq.shinyapps.io/site-review-demo/)
+
+
 ### Assessment & data dashboard
-To run locally:
+To run locally or in R-Studio Cloud:
 ```{r, eval=F}
 irTools::asmntDashboard()
 ```
 To run remotely:
 [udwq.shinyapps.io/asmntDashboard](https://udwq.shinyapps.io/asmntDashboard/)
-[![lasmntDashboard](99-other-files/images/asmntDashboard.PNG)](https://udwq.shinyapps.io/asmntDashboard/)
+[![asmntDashboard](99-other-files/images/asmntDashboard.PNG)](https://udwq.shinyapps.io/asmntDashboard/)
 <br><br>
 
 
 ### Lake profile dashboard
+Application cloud project access:
+[rstudio.cloud/project/204933](https://rstudio.cloud/project/204933)
+```{r, eval=F}
+shiny::runApp()
+```
+
+To run remotely:
 [udwq.shinyapps.io/lakeprofiledashboard](https://udwq.shinyapps.io/lakeprofiledashboard/)
 [![lake-profiles](99-other-files/images/lake-profiles.PNG)](https://udwq.shinyapps.io/lakeprofiledashboard/)
 <br><br>
 
 ### High frequency DO dashboard
+Remote run only:
 [udwq.shinyapps.io/hfdoDashboard](https://udwq.shinyapps.io/hfdoDashboard/)
 [![hfdo](99-other-files/images/hfdo.PNG)](https://udwq.shinyapps.io/hfdoDashboard/)
 <br><br>

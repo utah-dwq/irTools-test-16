@@ -9,9 +9,9 @@ documentclass: book
 ---
 
 # Preface {-}
-This book provides a background and demonstration of the Utah DWQ IR Team's re-development and automation of water quality assessment tools.  
+This document provides a background and demonstration of the Utah DWQ IR Team's re-development and automation of water quality assessment tools.  
 <br>
-This book consists of three components:  
+This document consists of three components:  
 1. A background section describing the objectives, tools, and approach to developing new water quality assessment tools.  
 2. A full-scale demonstration of the current state of this new toolset via the application of these tools to the 2016 IR period of record dataset (2008-2014), and   
 3. A series of example data and assessment review and visualization applications.  
