@@ -5,9 +5,9 @@ Demo materials can be accessed and run locally in three ways:
 
 ## Preferred method: R-Studio Cloud
 A cloud workspace and R-project with DWQ's R packages and dependencies pre-installed can be accessed through R-Studio Cloud.  
-First, [sign up for an R-Studio account](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1) if you don't already have one. 
+First, [sign up for an R-Studio account](https://login.rstudio.cloud/register?redirect=https%3A%2F%2Fclient.login.rstudio.cloud%2Foauth%2Flogin%3Fshow_auth%3D0%26show_login%3D1%26show_setup%3D1){target="_blank"} if you don't already have one. 
 Accounts are free, and logins via existing Google or GitHub accounts are OK.  
-Then, access the project for this demonstration at [rstudio.cloud/project/360104](https://rstudio.cloud/project/360104). Opening this link will generate a temorary copy of the demonstration 
+Then, access the project for this demonstration at [rstudio.cloud/project/360104](https://rstudio.cloud/project/360104){target="_blank"}. Opening this link will generate a temorary copy of the demonstration 
 project on your account. There you are able to import DWQ R package libraries and run functions and applications.  
 For example, 
 ```{r, eval=F}
@@ -16,7 +16,7 @@ asmntDashboard()
 ```
 
 ## Local install of R & DWQ packages
-Install R [r-project.org](https://www.r-project.org/) and/or R-Studio [rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/) if not already installed on your computer.    
+Install R [r-project.org](https://www.r-project.org/){target="_blank"} and/or R-Studio [rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/){target="_blank"} if not already installed on your computer.    
 Installing DWQ's R packages from GitHub to your local R installation requires the package, 'devtools'.  
 To install devtools & DWQ's R packages:
 ```{r, eval=F}
@@ -48,7 +48,7 @@ library(irTools)
 downloadWQP(outfile_path='01-raw-data',start_date='10/01/2008', end_date='09/30/2014', zip=TRUE, unzip=TRUE, retrieve=c("narrowresult", "activity", "detquantlim"))
 downloadWQP(outfile_path='01-raw-data', zip=FALSE, retrieve="sites")
 ```
-*Note--* Downloading all sites separately (query q/o POR date range), then subsetting to just those included in narrowresult.
+*Note--* Downloading all sites separately (query w/o date range), then subsetting to just those included in narrowresult.
 
 ```{r, download2, eval=F}
 sites=read.csv(file='01-raw-data/sites-2019-04-04.csv')

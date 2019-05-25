@@ -16,7 +16,7 @@ This document consists of three components:
 2. A full-scale demonstration of the current state of this new toolset via the application of these tools to the 2016 IR period of record dataset (2008-2014), and   
 3. A series of example data and assessment review and visualization applications.  
 <br>
-The source code for this book is available via [GitHub repository](https://github.com/utah-dwq/irTools-test-16) .  
+The source code for this book is available via [GitHub repository](https://github.com/utah-dwq/irTools-test-16){target="_blank"} .  
 <br><br>
 
 ```{r, out.width='70%', fig.align="center", echo=F}

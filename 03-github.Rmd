@@ -4,12 +4,12 @@ Individuals, organizations, teams, and repositories.
 
 ## DWQ GitHub organization
 A location for DWQ staff to store, collaborate, and share repositories.
-[github.com/utah-dwq](https://github.com/utah-dwq)
+[github.com/utah-dwq](https://github.com/utah-dwq){target="_blank"}
 
 ## DWQ R packages
 DWQ has two packages in current development. These can be viewed and installed via GitHub.  
-* [wqTools](https://github.com/utah-dwq/wqTools)  
-* [irTools](https://github.com/utah-dwq/irTools)  
+* [wqTools](https://github.com/utah-dwq/wqTools){target="_blank"}  
+* [irTools](https://github.com/utah-dwq/irTools){target="_blank"}  
 
 
 # IR process outline

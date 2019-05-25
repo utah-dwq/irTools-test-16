@@ -1,7 +1,7 @@
 # R statistical program
 ## R
 R is an open source statistical program and coding language.  
-[r-project.org](https://www.r-project.org/)  
+[r-project.org](https://www.r-project.org/){target="_blank"}  
 <br>
 Robust user community of coders & problem solvers.  
 Fully customizable.  
@@ -32,6 +32,6 @@ knitr::include_graphics('99-other-files/images/downloadWQP-help.PNG')
 ```
 <br>
 
-* [Package manuals](https://github.com/ut-ir-tools/irTools/blob/master/irTools_0.0.0.9000.pdf)  
+* [Package manuals](https://github.com/ut-ir-tools/irTools/blob/master/irTools_0.0.0.9000.pdf){target="_blank"}  
 * Markdown & bookdown
 

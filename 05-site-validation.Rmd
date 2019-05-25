@@ -19,7 +19,7 @@ Data from all sites still requiring review will be rejected at a later step. A '
 manually added to a single .xlsx workbook to interface with the site review application (tabnames 'sites' and 'reasons').
 
 To run remotely:
-[Site review application](https://udwq.shinyapps.io/site-review-demo/)
+[Site review application](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
 
 To run locally:
 ```{r, eval=F}

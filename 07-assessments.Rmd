@@ -146,8 +146,8 @@ write.csv(file='04-assessments/site-use-param-asmnt.csv', site_use_param_assessm
 ```
 
 # Assessment map
-[https://bookdown.org/jakevl/assessment-map/assessment-map.html](https://bookdown.org/jakevl/assessment-map/assessment-map.html)
-[![assessment-map](99-other-files/images/assessment-map.PNG)](https://bookdown.org/jakevl/assessment-map/assessment-map.html)
+[https://bookdown.org/jakevl/assessment-map/assessment-map.html](https://bookdown.org/jakevl/assessment-map/assessment-map.html){target="_blank"}
+[![assessment-map](99-other-files/images/assessment-map.PNG)](https://bookdown.org/jakevl/assessment-map/assessment-map.html){target="_blank"}
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 

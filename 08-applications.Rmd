@@ -13,8 +13,8 @@ irTools::runSiteValApp()
 ```
 
 To run remotely:
-[Site review application](https://udwq.shinyapps.io/site-review-demo/)
-[![site-val-app](99-other-files/images/site-val-app.PNG)](https://udwq.shinyapps.io/site-review-demo/)
+[Site review application](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
+[![site-val-app](99-other-files/images/site-val-app.PNG)](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
 
 
 ### Assessment & data dashboard
@@ -23,38 +23,38 @@ To run locally or in R-Studio Cloud:
 irTools::asmntDashboard()
 ```
 To run remotely:
-[udwq.shinyapps.io/asmntDashboard](https://udwq.shinyapps.io/asmntDashboard/)
-[![asmntDashboard](99-other-files/images/asmntDashboard.PNG)](https://udwq.shinyapps.io/asmntDashboard/)
+[udwq.shinyapps.io/asmntDashboard](https://udwq.shinyapps.io/asmntDashboard/){target="_blank"}
+[![asmntDashboard](99-other-files/images/asmntDashboard.PNG)](https://udwq.shinyapps.io/asmntDashboard/){target="_blank"}
 <br><br>
 
 
 ### Lake profile dashboard
 Application cloud project access:
-[rstudio.cloud/project/204933](https://rstudio.cloud/project/204933)
+[rstudio.cloud/project/204933](https://rstudio.cloud/project/204933){target="_blank"}
 ```{r, eval=F}
 shiny::runApp()
 ```
 
 To run remotely:
-[udwq.shinyapps.io/lakeprofiledashboard](https://udwq.shinyapps.io/lakeprofiledashboard/)
-[![lake-profiles](99-other-files/images/lake-profiles.PNG)](https://udwq.shinyapps.io/lakeprofiledashboard/)
+[udwq.shinyapps.io/lakeprofiledashboard](https://udwq.shinyapps.io/lakeprofiledashboard/){target="_blank"}
+[![lake-profiles](99-other-files/images/lake-profiles.PNG)](https://udwq.shinyapps.io/lakeprofiledashboard/){target="_blank"}
 <br><br>
 
 ### High frequency DO dashboard
 Remote run only:
-[udwq.shinyapps.io/hfdoDashboard](https://udwq.shinyapps.io/hfdoDashboard/)
-[![hfdo](99-other-files/images/hfdo.PNG)](https://udwq.shinyapps.io/hfdoDashboard/)
+[udwq.shinyapps.io/hfdoDashboard](https://udwq.shinyapps.io/hfdoDashboard/){target="_blank"}
+[![hfdo](99-other-files/images/hfdo.PNG)](https://udwq.shinyapps.io/hfdoDashboard/){target="_blank"}
 <br><br>
 
 ## Examples from other programs
 ### Utah Lake Data Explorer
-[udwq.shinyapps.io/UtahLakeDataExplorer](https://udwq.shinyapps.io/UtahLakeDataExplorer/)
-[![utah-lake](99-other-files/images/utah-lake.PNG)](https://udwq.shinyapps.io/UtahLakeDataExplorer/)
+[udwq.shinyapps.io/UtahLakeDataExplorer](https://udwq.shinyapps.io/UtahLakeDataExplorer/){target="_blank"}
+[![utah-lake](99-other-files/images/utah-lake.PNG)](https://udwq.shinyapps.io/UtahLakeDataExplorer/){target="_blank"}
 <br><br>
 
 ### Great Salt Lake Data Explorer
-[udwq.shinyapps.io/GSL_data_explorer](https://udwq.shinyapps.io/GSL_data_explorer/)
-[![utah-lake](99-other-files/images/gsl.PNG)](https://udwq.shinyapps.io/GSL_data_explorer/)
+[udwq.shinyapps.io/GSL_data_explorer](https://udwq.shinyapps.io/GSL_data_explorer/){target="_blank"}
+[![gsl](99-other-files/images/gsl.PNG)](https://udwq.shinyapps.io/GSL_data_explorer/){target="_blank"}
 <br><br>
 
 
