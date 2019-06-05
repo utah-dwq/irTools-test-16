@@ -10,7 +10,7 @@
 "River/Stream","ACCEPT","Y"
 "River/Stream Intermittent","ACCEPT","Y"
 "River/Stream Perennial","ACCEPT","Y"
-"Seep","REJECT","Y"
+"Seep","ACCEPT","Y"
 "Spring","ACCEPT","Y"
 "Stream","ACCEPT","Y"
 "Stream: Canal","ACCEPT","Y"
