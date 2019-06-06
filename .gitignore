@@ -18,3 +18,5 @@ lookup-tables/~$ir_translation_workbook.xlsx
 _book
 _bookdown_files
 _main_cache
+03-processed-data/all-rejected-data.csv
+03-processed-data/all-accepted-data-wide.csv

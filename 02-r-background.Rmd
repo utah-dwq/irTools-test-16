@@ -35,3 +35,4 @@ knitr::include_graphics('99-other-files/images/downloadWQP-help.PNG')
 * [Package manuals](https://github.com/ut-ir-tools/irTools/blob/master/irTools_0.0.0.9000.pdf){target="_blank"}  
 * Markdown & bookdown
 
+<br><br><br><br><br><br>

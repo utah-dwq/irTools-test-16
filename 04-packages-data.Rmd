@@ -1,7 +1,8 @@
 # (PART) Demonstration {-}
 
 # Options for running demos
-Demo materials can be accessed and run locally in three ways:
+Underlying files & source code can be accessed via [GitHub repository](https://github.com/utah-dwq/irTools-test-16){target="_blank"}.  
+Demo tools can be accessed and run in three ways:
 
 ## Preferred method: R-Studio Cloud
 A cloud workspace and R-project with DWQ's R packages and dependencies pre-installed can be accessed through R-Studio Cloud.  
@@ -26,8 +27,20 @@ library(irTools)
 asmntDashboard()
 ```
 
+If you encounter issues installing one or more package dependencies, e.g.:  
+```{r, eval=F}
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) :  
+there is no package called ‘glue’
+```
+
+Attempt a manual install of that package and re-try.
+```{r, eval=F}
+install.packages('glue')
+devtools::install_github('utah-dwq/irTools')
+```
+
 ## Running Shiny applications via remote server
-Applications included in this demo have also been deployed to a remote server where they can be accessed via a web browser without installing R, packages, or creating a login. See the 'Applications' section of this document for more information. 
+Most applications included in this demo have also been deployed to a remote server where they can be accessed via a web browser without installing R, packages, or creating a login. See the 'Applications' section of this document for more information. 
 Note that applications running on the remote server may run a bit slower and time-out after 15 minutes of inactivity.
 
 # Packages & data downloads

@@ -64,6 +64,11 @@ mrf_sub=subset(mrf_screened,
 	IR_Site_FLAG =="ACCEPT")
 ```
 
+### Identify rejected data
+```{r, rej-data}
+table_rej_data=mrf_screened[mrf_screened$ActivityIdentifier %in% mrf_sub$ActivityIdentifier,]
+```
+
 ## Data prep
 Generating assessable dataset  
 
@@ -145,6 +150,8 @@ prepped_data=dataPrep(data=data_crit, translation_wb=translation_wb, split_agg_t
 attach(prepped_data)
 ```
 
+### Write raw data
+
 
 ### Write processed data
 ```{r, write-proc-data}
@@ -155,6 +162,11 @@ merged_data=unique(merged_data[,c('ActivityStartDate','IR_MLID','IR_MLNAME','ASS
 							'ActivityDepthHeightMeasure.MeasureValue','R317Descrp','ActivityDepthHeightMeasure.MeasureUnitCode','cf_max_pH_pH units','cf_max_Temperature, water_deg C','cf_min_Calcium_mg/l','cf_min_Magnesium_mg/l','cf_min_pH_pH units',
 							'hardness')])
 save(merged_data, criteria, file='03-processed-data/prepped_merged_data.Rdata')
+
+
+all_rej_data=plyr::rbind.fill(prepped_data$rej_data, table_rej_data)
+write.csv(all_rej_data, file='03-processed-data/all-rejected-data.csv')
+write.csv(prepped_data$acc_data, file='03-processed-data/all-accepted-data-wide.csv')
 ```
 
 ```{r, echo=F}

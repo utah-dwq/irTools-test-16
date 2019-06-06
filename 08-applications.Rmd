@@ -7,13 +7,13 @@
 
 ### Pre-assessment site validation applications
 
-To run locallyor in R-Studio Cloud:
+To run locally or in R-Studio Cloud:
 ```{r, eval=F}
 irTools::runSiteValApp()
 ```
 
 To run remotely:
-[Site review application](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
+[udwq.shinyapps.io/site-review-demo](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
 [![site-val-app](99-other-files/images/site-val-app.PNG)](https://udwq.shinyapps.io/site-review-demo/){target="_blank"}
 
 

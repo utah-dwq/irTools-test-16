@@ -2,7 +2,9 @@
 # Site validation
 
 
-## Auto site validation
+## Auto site validation & use and assessment unit assignments
+Performs an automated validation of site locations (e.g. appropriate sample location types, waterbody types, jurisdictions etc.). 
+Also performs a spatial join between sites and beneficial use and assessment unit polygons to assign uses and AUs to sites.
 ```{r, site-auto-validate, eval=F}
 autoValidateWQPsites(
 	sites_object=irdata$sites,
